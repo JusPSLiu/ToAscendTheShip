@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=4 uid="uid://bs0hu1hyenupt"]
+
+[ext_resource type="Script" path="res://Scripts/interactive/nail.gd" id="1_xu5cu"]
+[ext_resource type="Texture2D" uid="uid://d0ky33upymijh" path="res://Art/interactive/nail_hightlighted.png" id="2_n8y4p"]
+[ext_resource type="TileSet" uid="uid://b3iikbnwdxp5" path="res://Tilesets/ship.tres" id="3_qjfr4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gr8tb"]
+size = Vector2(17, 9)
+
+[node name="NailAndBlock" type="Node2D" node_paths=PackedStringArray("fallingRegion", "hitbox", "nail", "nailSprite")]
+position = Vector2(1441, 368)
+script = ExtResource("1_xu5cu")
+fallingRegion = NodePath("FallingRegion")
+hitbox = NodePath("rigidNail/nail/hitbox")
+nail = NodePath("rigidNail")
+nailSprite = NodePath("rigidNail/nail")
+
+[node name="rigidNail" type="RigidBody2D" parent="."]
+process_mode = 4
+collision_layer = 0
+collision_mask = 3
+
+[node name="nail" type="Sprite2D" parent="rigidNail"]
+process_mode = 1
+position = Vector2(-7, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_n8y4p")
+
+[node name="hitbox" type="Area2D" parent="rigidNail/nail"]
+
+[node name="collision" type="CollisionShape2D" parent="rigidNail/nail/hitbox"]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_gr8tb")
+
+[node name="RigidShape" type="CollisionPolygon2D" parent="rigidNail"]
+polygon = PackedVector2Array(4, 0, -14, 4, -14, -4)
+
+[node name="FallingRegion" type="TileMapLayer" parent="."]
+z_index = -1
+position = Vector2(-1, -47)
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAACAAEAAQACAAMAAAABAAEAAQABAAMAAAAAAAEAAQAEAAMAAAACAAAAAQABAAMAAAACAP//AQACAAEAAAAAAAAAAQAAAAEAAAABAAAAAQABAAEAAAADAP//AQACAAIAAAAEAAAAAQABAAMAAAAFAAAAAQACAAMAAAAFAAEAAQAAAAMAAAAGAAEAAQADAAMAAAADAAAAAQABAAMAAAADAAEAAQAAAAMAAAAEAAEAAQABAAMAAAAGAAAAAQADAAIAAAAEAP//AQAAAAIAAAAFAP//AQACAAIAAAAGAP//AQADAAEAAAA=")
+tile_set = ExtResource("3_qjfr4")
+
+[connection signal="area_entered" from="rigidNail/nail/hitbox" to="." method="_on_hitbox_area_entered"]

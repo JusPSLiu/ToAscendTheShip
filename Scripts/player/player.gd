@@ -8,6 +8,8 @@ const JUMP_VELOCITY = -400.0
 const LERP_DECAY_RATE = 8
 
 @export var Legs : Array[AnimatedSprite2D]
+@export var Arm : Sprite2D
+@export var ArmAttachmentAnimator : AnimationPlayer
 
 var facingDirection = false
 var moving = false
@@ -17,6 +19,9 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+
+		# turn arm to camera
+	Arm.look_at(get_global_mouse_position());
 
 	# Handle jump
 	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -42,7 +47,7 @@ func _physics_process(delta: float) -> void:
 				if (Legs.size() > 1):
 					if (leg.position.y == Legs[0].front_y):
 						leg.position.y = Legs[0].back_y
-						leg.z_index = -1
+						leg.z_index = -2
 					else:
 						leg.position.y = Legs[0].front_y
 						leg.z_index = 0
@@ -56,9 +61,15 @@ func _physics_process(delta: float) -> void:
 			moving = false
 			for leg in Legs:
 				leg.play("stand")
-
+	
 	move_and_slide()
 
 # i saw a yt video by freya holmer abt this being a better lerp for this sort of scenario
 func stolenExpDecayFromYT(a, b, decay, dt):
 	return b+(a-b)*exp(-decay*dt)
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if (event.button_index == MOUSE_BUTTON_LEFT):
+			if (event.pressed and !ArmAttachmentAnimator.is_playing()):
+				ArmAttachmentAnimator.play("active")
