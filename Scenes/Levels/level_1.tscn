@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://b6b5e5qq5hbws"]
+[gd_scene load_steps=17 format=4 uid="uid://b6b5e5qq5hbws"]
 
 [ext_resource type="Texture2D" uid="uid://cjsjqht10hb8f" path="res://Art/Backgrounds/Opening/sky.png" id="1_qy52a"]
 [ext_resource type="Script" path="res://Scripts/Levels/LevelScript.gd" id="1_yxior"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dejx7kl22e1t2" path="res://Art/Tiles/Wood/scaffolding.png" id="4_yi80g"]
 [ext_resource type="PackedScene" uid="uid://dsale8wfyjdm0" path="res://Scenes/player.tscn" id="6_j1y1t"]
 [ext_resource type="PackedScene" uid="uid://bs0hu1hyenupt" path="res://Scenes/interactive/nail_and_block.tscn" id="7_gk26c"]
+[ext_resource type="AudioStream" uid="uid://dxb6823qx7xu8" path="res://Audio/Music/mainstart.ogg" id="9_ur0g3"]
+[ext_resource type="AudioStream" uid="uid://djpq76iecry6j" path="res://Audio/Music/maintheme.ogg" id="10_msug8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_23vbv"]
 texture = ExtResource("2_5tpl1")
@@ -324,6 +326,13 @@ sources/2 = SubResource("TileSetAtlasSource_eiadd")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwxje"]
 size = Vector2(45, 177)
 
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_mbt7j"]
+loop = false
+fade_time = 0.01
+stream_count = 2
+stream_0 = ExtResource("9_ur0g3")
+stream_1 = ExtResource("10_msug8")
+
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_yxior")
 
@@ -373,5 +382,12 @@ color = Color(0, 0, 0, 1)
 position = Vector2(14.5, -80.5)
 shape = SubResource("RectangleShape2D_lwxje")
 
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_mbt7j")
+autoplay = true
+bus = &"Music"
+
 [connection signal="body_entered" from="FinishedArea" to="." method="_on_finished_area_body_entered"]
 [connection signal="body_shape_entered" from="FinishedArea" to="." method="_on_finished_area_body_entered"]
+
+[editable path="NailAndBlock"]
