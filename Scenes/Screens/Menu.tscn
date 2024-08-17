@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://0p0y7mshhsh6"]
+
+[ext_resource type="Texture2D" uid="uid://dsdoiaskg1jmn" path="res://Art/Backgrounds/Opening/skytesselated.png" id="1_rxuvx"]
+[ext_resource type="Script" path="res://Scripts/Menu/mainmenu.gd" id="2_gjkju"]
+
+[node name="TextureRect" type="TextureRect"]
+texture_filter = 1
+offset_right = 960.0
+offset_bottom = 540.0
+texture = ExtResource("1_rxuvx")
+script = ExtResource("2_gjkju")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 71.0
+offset_right = 831.0
+offset_bottom = 176.0
+theme_override_colors/font_color = Color(0.389287, 0.389287, 0.389287, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 76
+text = "To Ascend The Ship"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 372.0
+offset_top = 250.0
+offset_right = 598.0
+offset_bottom = 376.0
+theme_override_font_sizes/font_size = 86
+text = " play "
+
+[connection signal="pressed" from="Button" to="." method="loadfirstlevel"]
