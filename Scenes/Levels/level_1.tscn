@@ -328,7 +328,7 @@ size = Vector2(45, 177)
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_mbt7j"]
 loop = false
-fade_time = 0.01
+fade_time = 0.0
 stream_count = 2
 stream_0 = ExtResource("9_ur0g3")
 stream_1 = ExtResource("10_msug8")

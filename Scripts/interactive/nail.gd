@@ -4,6 +4,7 @@ extends Node2D
 @export var hitbox : Area2D
 @export var nail : RigidBody2D
 @export var nailSprite : Sprite2D
+@export var soundPlayer : AudioStreamPlayer2D
 @export var fallingDistance : int = 2
 
 var active : bool = false
@@ -35,6 +36,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		nail.linear_velocity.x = -100
 		nail.z_index = -1
 		nailSprite.texture = load("res://Art/interactive/nail.png")
+		soundPlayer.play()
 
 func reset():
 	position = startPos

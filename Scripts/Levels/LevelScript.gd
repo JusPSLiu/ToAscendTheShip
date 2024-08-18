@@ -21,6 +21,5 @@ func get_to_next_level():
 
 
 func _on_finished_area_body_entered(body: Node2D) -> void:
-	print_debug("hi")
 	if (body.is_in_group("player")):
 		get_to_next_level()

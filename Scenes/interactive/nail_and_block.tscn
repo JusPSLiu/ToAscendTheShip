@@ -1,19 +1,21 @@
-[gd_scene load_steps=5 format=4 uid="uid://bs0hu1hyenupt"]
+[gd_scene load_steps=6 format=4 uid="uid://bs0hu1hyenupt"]
 
 [ext_resource type="Script" path="res://Scripts/interactive/nail.gd" id="1_xu5cu"]
 [ext_resource type="Texture2D" uid="uid://d0ky33upymijh" path="res://Art/interactive/nail_hightlighted.png" id="2_n8y4p"]
 [ext_resource type="TileSet" uid="uid://b3iikbnwdxp5" path="res://Tilesets/ship.tres" id="3_qjfr4"]
+[ext_resource type="AudioStream" uid="uid://d1xnmmipcctrv" path="res://Audio/sfx/whack.wav" id="4_xym16"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gr8tb"]
 size = Vector2(17, 9)
 
-[node name="NailAndBlock" type="Node2D" node_paths=PackedStringArray("fallingRegion", "hitbox", "nail", "nailSprite")]
+[node name="NailAndBlock" type="Node2D" node_paths=PackedStringArray("fallingRegion", "hitbox", "nail", "nailSprite", "soundPlayer")]
 position = Vector2(1441, 368)
 script = ExtResource("1_xu5cu")
 fallingRegion = NodePath("FallingRegion")
 hitbox = NodePath("rigidNail/nail/hitbox")
 nail = NodePath("rigidNail")
 nailSprite = NodePath("rigidNail/nail")
+soundPlayer = NodePath("AudioStreamPlayer2D")
 
 [node name="rigidNail" type="RigidBody2D" parent="."]
 process_mode = 4
@@ -41,5 +43,9 @@ position = Vector2(-1, -47)
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAACAAEAAQACAAMAAAABAAEAAQABAAMAAAAAAAEAAQAEAAMAAAACAAAAAQABAAMAAAACAP//AQACAAEAAAAAAAAAAQAAAAEAAAABAAAAAQABAAEAAAADAP//AQACAAIAAAAEAAAAAQABAAMAAAAFAAAAAQACAAMAAAAFAAEAAQAAAAMAAAAGAAEAAQADAAMAAAADAAAAAQABAAMAAAADAAEAAQAAAAMAAAAEAAEAAQABAAMAAAAGAAAAAQADAAIAAAAEAP//AQAAAAIAAAAFAP//AQACAAIAAAAGAP//AQADAAEAAAA=")
 tile_set = ExtResource("3_qjfr4")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_xym16")
+volume_db = -10.0
 
 [connection signal="area_entered" from="rigidNail/nail/hitbox" to="." method="_on_hitbox_area_entered"]
