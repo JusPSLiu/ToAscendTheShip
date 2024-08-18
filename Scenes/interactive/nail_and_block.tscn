@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://bs0hu1hyenupt"]
+[gd_scene load_steps=7 format=4 uid="uid://bs0hu1hyenupt"]
 
 [ext_resource type="Script" path="res://Scripts/interactive/nail.gd" id="1_xu5cu"]
 [ext_resource type="Texture2D" uid="uid://d0ky33upymijh" path="res://Art/interactive/nail_hightlighted.png" id="2_n8y4p"]
 [ext_resource type="TileSet" uid="uid://b3iikbnwdxp5" path="res://Tilesets/ship.tres" id="3_qjfr4"]
 [ext_resource type="AudioStream" uid="uid://d1xnmmipcctrv" path="res://Audio/sfx/whack.wav" id="4_xym16"]
+[ext_resource type="Texture2D" uid="uid://d1jxixmmkb6he" path="res://Art/decoration/metaltiley.png" id="5_qpmc7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gr8tb"]
 size = Vector2(17, 9)
@@ -47,5 +48,17 @@ tile_set = ExtResource("3_qjfr4")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_xym16")
 volume_db = -10.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.8, 0.8, 1, 1)
+z_index = -3
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 17.0
+offset_bottom = 62.0
+scale = Vector2(2, 2)
+texture = ExtResource("5_qpmc7")
+expand_mode = 1
+stretch_mode = 1
 
 [connection signal="area_entered" from="rigidNail/nail/hitbox" to="." method="_on_hitbox_area_entered"]
