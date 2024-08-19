@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://b6b5e5qq5hbws"]
+[gd_scene load_steps=53 format=4 uid="uid://b6b5e5qq5hbws"]
 
 [ext_resource type="Texture2D" uid="uid://cjsjqht10hb8f" path="res://Art/Backgrounds/Opening/sky.png" id="1_qy52a"]
 [ext_resource type="Script" path="res://Scripts/Levels/LevelScript.gd" id="1_yxior"]
@@ -14,15 +14,33 @@
 [ext_resource type="Texture2D" uid="uid://xjifjnlqh00l" path="res://Art/Characters/friends/boss6732.png" id="12_7pep4"]
 [ext_resource type="Texture2D" uid="uid://cuooh0nivng4r" path="res://Art/decoration/upgarde/upgrade.png" id="13_1q2do"]
 [ext_resource type="Texture2D" uid="uid://jx0u077dcvte" path="res://Art/decoration/upgarde/upgradeNew.png" id="14_4eh0i"]
+[ext_resource type="Script" path="res://Scripts/UpgradeStation.gd" id="14_6kg6a"]
 [ext_resource type="Texture2D" uid="uid://b6jfkonr3a1kf" path="res://Art/decoration/upgarde/upgradedoor.png" id="15_4al38"]
 [ext_resource type="Texture2D" uid="uid://x2vb6fvibqhg" path="res://Art/decoration/upgarde/upgradefront.png" id="16_2qbkx"]
+[ext_resource type="AudioStream" uid="uid://cenxhhncti2ek" path="res://Audio/sfx/door.wav" id="16_lrc7h"]
 [ext_resource type="Texture2D" uid="uid://d32rd2p0sw3n1" path="res://Art/decoration/upgarde/upgradefrontbot.png" id="17_xv8k6"]
+[ext_resource type="Script" path="res://Scripts/Menu/upgrade_screen.gd" id="18_k3gv4"]
 [ext_resource type="Texture2D" uid="uid://dq8omc5hr2nli" path="res://Art/Backgrounds/upgradeback.png" id="18_rycl4"]
+[ext_resource type="Texture2D" uid="uid://7b7rwxmfvlle" path="res://Art/upgradeMenu/selectedoutline.png" id="19_a67u1"]
 [ext_resource type="Texture2D" uid="uid://b6t2p7vpt3suw" path="res://Art/upgradeMenu/none.png" id="19_w4bca"]
 [ext_resource type="Texture2D" uid="uid://c18qt5snh13mc" path="res://Art/upgradeMenu/hammer.png" id="20_2qpb5"]
+[ext_resource type="Texture2D" uid="uid://cd1cfhs0hs2p5" path="res://Art/Characters/Player/body.png" id="20_p4e4q"]
+[ext_resource type="Texture2D" uid="uid://6t8uxvgqbtak" path="res://Art/Characters/Player/arm.png" id="21_085sx"]
+[ext_resource type="Texture2D" uid="uid://kmkui50pnjn6" path="res://Art/upgradeMenu/noneHov.png" id="21_k3pma"]
 [ext_resource type="Texture2D" uid="uid://bmrgjcluw2juy" path="res://Art/upgradeMenu/jackhammer.png" id="21_pyreu"]
+[ext_resource type="Texture2D" uid="uid://bmhfdc0m487oy" path="res://Art/Characters/Player/hammer.png" id="22_boiin"]
 [ext_resource type="Texture2D" uid="uid://fvg7wgwy81fa" path="res://Art/upgradeMenu/tracks.png" id="22_jsfck"]
+[ext_resource type="Texture2D" uid="uid://c0ogv07hl3rny" path="res://Art/Characters/Player/legs-tracks.png" id="23_g15nl"]
+[ext_resource type="Texture2D" uid="uid://cs28rl8kc8oyv" path="res://Art/upgradeMenu/hammerHov.png" id="23_u83db"]
 [ext_resource type="Texture2D" uid="uid://btcysekcdlfut" path="res://Art/upgradeMenu/wheel.png" id="23_w3kl6"]
+[ext_resource type="Texture2D" uid="uid://do1qbrx637e8a" path="res://Art/Characters/Player/jackhammer.png" id="23_xrsbh"]
+[ext_resource type="Texture2D" uid="uid://bj2uysy57t0em" path="res://Art/upgradeMenu/jackhammerHov.png" id="25_ie5u3"]
+[ext_resource type="Texture2D" uid="uid://bpi42f4j3rjwk" path="res://Art/Characters/Player/wheel.png" id="25_lef5m"]
+[ext_resource type="Texture2D" uid="uid://bk5wsgcsnyle5" path="res://Art/upgradeMenu/tracksHov.png" id="27_a7hao"]
+[ext_resource type="Texture2D" uid="uid://0vv47uefuy63" path="res://Art/upgradeMenu/wheelHov.png" id="29_ofdlb"]
+[ext_resource type="FontFile" uid="uid://fspxjukx0cio" path="res://Art/Fonts/born2bsporty-fs.regular.otf" id="35_e8vfh"]
+[ext_resource type="AudioStream" uid="uid://dqd71fiatnya8" path="res://Audio/ui/select.wav" id="39_iurdl"]
+[ext_resource type="Script" path="res://Scripts/Menu/dialogue.gd" id="41_4muir"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_23vbv"]
 texture = ExtResource("2_5tpl1")
@@ -369,7 +387,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_siqjo"]
 resource_name = "closedoor"
-loop_mode = 1
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -377,16 +395,61 @@ tracks/0/path = NodePath("door:size")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(0.2, 1),
 "update": 0,
 "values": [Vector2(26, 0), Vector2(26, 59)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/doorsounds")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_c355r"]
+resource_name = "opendoor"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("door:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(26, 59), Vector2(26, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/doorsounds")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aopne"]
 _data = {
 "RESET": SubResource("Animation_x37uh"),
-"closedoor": SubResource("Animation_siqjo")
+"closedoor": SubResource("Animation_siqjo"),
+"opendoor": SubResource("Animation_c355r")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jykv3"]
@@ -416,6 +479,13 @@ offset_bottom = 189.0
 scale = Vector2(2, 2)
 texture = ExtResource("3_w2gcb")
 stretch_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
+offset_left = 24.0
+offset_top = 459.0
+offset_right = 2865.0
+offset_bottom = 562.0
+color = Color(0.72549, 0.32549, 0.14902, 1)
 
 [node name="TileMap" type="TileMapLayer" parent="."]
 z_index = -1
@@ -452,20 +522,26 @@ position = Vector2(14.5, -80.5)
 shape = SubResource("RectangleShape2D_lwxje")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = SubResource("AudioStreamInteractive_cf6pe")
 autoplay = true
 bus = &"Music"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="fren" type="Sprite2D" parent="."]
 position = Vector2(339, 321)
 scale = Vector2(2, 2)
 texture = ExtResource("12_7pep4")
 
-[node name="Upgrade" type="Sprite2D" parent="."]
+[node name="Upgrade" type="Sprite2D" parent="." node_paths=PackedStringArray("newCover", "animationplayer", "upgradeMenu")]
 z_index = -3
 position = Vector2(-86, 118)
 scale = Vector2(2, 2)
 texture = ExtResource("13_1q2do")
+script = ExtResource("14_6kg6a")
+newCover = NodePath("new")
+animationplayer = NodePath("AnimationPlayer")
+upgradeType = 1
+upgradeMenu = NodePath("../upgradeScreen")
 
 [node name="new" type="Sprite2D" parent="Upgrade"]
 position = Vector2(0, -31)
@@ -475,7 +551,12 @@ texture = ExtResource("14_4eh0i")
 libraries = {
 "": SubResource("AnimationLibrary_aopne")
 }
-autoplay = "closedoor"
+
+[node name="doorsounds" type="AudioStreamPlayer2D" parent="Upgrade/AnimationPlayer"]
+process_mode = 3
+stream = ExtResource("16_lrc7h")
+max_polyphony = 2
+bus = &"Sounds"
 
 [node name="door" type="TextureRect" parent="Upgrade"]
 z_index = 2
@@ -506,20 +587,126 @@ offset_bottom = 39.0
 texture = ExtResource("17_xv8k6")
 
 [node name="Area2D" type="Area2D" parent="Upgrade" groups=["upgrader"]]
+collision_layer = 16
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Upgrade/Area2D"]
 position = Vector2(0, 17.5)
 shape = SubResource("RectangleShape2D_jykv3")
 
-[node name="upgradeScreen" type="CanvasLayer" parent="."]
+[node name="upgradeScreen" type="CanvasLayer" parent="." node_paths=PackedStringArray("previewArmParent", "previewLegParent", "armHighlighter", "legHighlighter", "armButtonParent", "legButtonParent", "buttonSounds", "player")]
+process_mode = 3
+visible = false
+script = ExtResource("18_k3gv4")
+previewArmParent = NodePath("previewguy/previewArms")
+previewLegParent = NodePath("previewguy/previewLegs")
+armHighlighter = NodePath("selectedarm")
+legHighlighter = NodePath("selectedleg")
+armButtonParent = NodePath("armhbox")
+legButtonParent = NodePath("leghbox")
+buttonSounds = NodePath("buttonSounds")
+player = NodePath("../Player")
 
-[node name="TextureRect" type="TextureRect" parent="upgradeScreen"]
+[node name="background" type="TextureRect" parent="upgradeScreen"]
+z_index = -1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("18_rycl4")
+
+[node name="previewguy" type="TextureRect" parent="upgradeScreen"]
+offset_left = 44.0
+offset_top = 98.0
+offset_right = 66.0
+offset_bottom = 139.0
+scale = Vector2(6, 6)
+texture = ExtResource("20_p4e4q")
+stretch_mode = 4
+
+[node name="ARM" type="TextureRect" parent="upgradeScreen/previewguy"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 22.0
+offset_right = 30.0
+offset_bottom = 26.0
+texture = ExtResource("21_085sx")
+
+[node name="previewArms" type="Control" parent="upgradeScreen/previewguy"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="hammer" type="TextureRect" parent="upgradeScreen/previewguy/previewArms"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 6.0
+offset_right = 33.0
+offset_bottom = 26.0
+texture = ExtResource("22_boiin")
+
+[node name="jackhammer" type="TextureRect" parent="upgradeScreen/previewguy/previewArms"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = -10.0
+offset_right = 34.0
+offset_bottom = 26.0
+texture = ExtResource("23_xrsbh")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="previewLegs" type="Control" parent="upgradeScreen/previewguy"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Tracks" type="TextureRect" parent="upgradeScreen/previewguy/previewLegs"]
+layout_mode = 0
+offset_left = -3.5
+offset_top = 35.75
+offset_right = 16.5
+offset_bottom = 49.75
+texture = ExtResource("23_g15nl")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Tracksbacc" type="TextureRect" parent="upgradeScreen/previewguy/previewLegs/Tracks"]
+z_index = -1
+layout_mode = 0
+offset_left = 7.5
+offset_top = -3.5
+offset_right = 27.5
+offset_bottom = 10.5
+texture = ExtResource("23_g15nl")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="wheel" type="TextureRect" parent="upgradeScreen/previewguy/previewLegs"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 34.0
+offset_right = 19.0
+offset_bottom = 56.0
+texture = ExtResource("25_lef5m")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="selectedarm" type="TextureRect" parent="upgradeScreen"]
+offset_left = 283.0
+offset_top = 102.0
+offset_right = 335.0
+offset_bottom = 154.0
+scale = Vector2(2, 2)
+texture = ExtResource("19_a67u1")
+
+[node name="selectedleg" type="TextureRect" parent="upgradeScreen"]
+offset_left = 283.0
+offset_top = 312.0
+offset_right = 335.0
+offset_bottom = 364.0
+scale = Vector2(2, 2)
+texture = ExtResource("19_a67u1")
 
 [node name="armhbox" type="HBoxContainer" parent="upgradeScreen"]
 offset_left = 287.0
@@ -531,14 +718,17 @@ scale = Vector2(2, 2)
 [node name="None" type="TextureButton" parent="upgradeScreen/armhbox"]
 layout_mode = 2
 texture_normal = ExtResource("19_w4bca")
+texture_hover = ExtResource("21_k3pma")
 
 [node name="Hammer" type="TextureButton" parent="upgradeScreen/armhbox"]
 layout_mode = 2
 texture_normal = ExtResource("20_2qpb5")
+texture_hover = ExtResource("23_u83db")
 
 [node name="jackhammer" type="TextureButton" parent="upgradeScreen/armhbox"]
 layout_mode = 2
 texture_normal = ExtResource("21_pyreu")
+texture_hover = ExtResource("25_ie5u3")
 
 [node name="leghbox" type="HBoxContainer" parent="upgradeScreen"]
 offset_left = 287.0
@@ -550,16 +740,47 @@ scale = Vector2(2, 2)
 [node name="None" type="TextureButton" parent="upgradeScreen/leghbox"]
 layout_mode = 2
 texture_normal = ExtResource("19_w4bca")
+texture_hover = ExtResource("21_k3pma")
 
 [node name="Hammer" type="TextureButton" parent="upgradeScreen/leghbox"]
 layout_mode = 2
 texture_normal = ExtResource("22_jsfck")
+texture_hover = ExtResource("27_a7hao")
 
-[node name="jackhammer" type="TextureButton" parent="upgradeScreen/leghbox"]
+[node name="wheel" type="TextureButton" parent="upgradeScreen/leghbox"]
 layout_mode = 2
 texture_normal = ExtResource("23_w3kl6")
+texture_hover = ExtResource("29_ofdlb")
+
+[node name="Button" type="Button" parent="upgradeScreen"]
+texture_filter = 1
+offset_left = 85.0
+offset_top = 438.0
+offset_right = 125.0
+offset_bottom = 464.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("35_e8vfh")
+text = "X Exit"
+
+[node name="buttonSounds" type="AudioStreamPlayer" parent="upgradeScreen"]
+stream = ExtResource("39_iurdl")
+volume_db = -10.0
+max_polyphony = 3
+bus = &"Sounds"
+
+[node name="dialogue" type="CanvasLayer" parent="."]
+script = ExtResource("41_4muir")
 
 [connection signal="body_entered" from="FinishedArea" to="." method="_on_finished_area_body_entered"]
 [connection signal="body_shape_entered" from="FinishedArea" to="." method="_on_finished_area_body_entered"]
+[connection signal="body_entered" from="Upgrade/Area2D" to="Upgrade" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Upgrade/Area2D" to="Upgrade" method="_on_area_2d_body_exited"]
+[connection signal="pressed" from="upgradeScreen/armhbox/None" to="upgradeScreen" method="selectUpgrade" binds= [1, 0]]
+[connection signal="pressed" from="upgradeScreen/armhbox/Hammer" to="upgradeScreen" method="selectUpgrade" binds= [1, 1]]
+[connection signal="pressed" from="upgradeScreen/armhbox/jackhammer" to="upgradeScreen" method="selectUpgrade" binds= [1, 2]]
+[connection signal="pressed" from="upgradeScreen/leghbox/None" to="upgradeScreen" method="selectUpgrade" binds= [0, 0]]
+[connection signal="pressed" from="upgradeScreen/leghbox/Hammer" to="upgradeScreen" method="selectUpgrade" binds= [0, 1]]
+[connection signal="pressed" from="upgradeScreen/leghbox/wheel" to="upgradeScreen" method="selectUpgrade" binds= [0, 2]]
+[connection signal="pressed" from="upgradeScreen/Button" to="upgradeScreen" method="close"]
 
 [editable path="NailAndBlock"]

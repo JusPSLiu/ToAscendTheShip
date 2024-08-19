@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://cerlmx6jjgrps"]
+
+[ext_resource type="Texture2D" uid="uid://c0ogv07hl3rny" path="res://Art/Characters/Player/legs-tracks.png" id="1_b7ibb"]
+[ext_resource type="Script" path="res://Scripts/player/legCustomizer.gd" id="2_uha0q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tcbh"]
+atlas = ExtResource("1_b7ibb")
+region = Rect2(20, 0, 20, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4jrd"]
+atlas = ExtResource("1_b7ibb")
+region = Rect2(40, 0, 20, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nw0h6"]
+atlas = ExtResource("1_b7ibb")
+region = Rect2(0, 0, 20, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1g6vx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tcbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4jrd")
+}],
+"loop": true,
+"name": &"move",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nw0h6")
+}],
+"loop": false,
+"name": &"stand",
+"speed": 5.0
+}]
+
+[node name="LegL" type="AnimatedSprite2D"]
+position = Vector2(-5, 21)
+sprite_frames = SubResource("SpriteFrames_1g6vx")
+animation = &"move"
+script = ExtResource("2_uha0q")
