@@ -1,37 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsale8wfyjdm0"]
+[gd_scene load_steps=5 format=3 uid="uid://dsale8wfyjdm0"]
 
 [ext_resource type="Script" path="res://Scripts/player/player.gd" id="1_bloh1"]
 [ext_resource type="Texture2D" uid="uid://cd1cfhs0hs2p5" path="res://Art/Characters/Player/body.png" id="2_y4omi"]
-[ext_resource type="PackedScene" uid="uid://cerlmx6jjgrps" path="res://Scenes/Upgrades/trackL.tscn" id="3_ocw1e"]
-[ext_resource type="PackedScene" uid="uid://bvdgu5xkbnhed" path="res://Scenes/Upgrades/trackLR.tscn" id="4_mfv0a"]
 [ext_resource type="Texture2D" uid="uid://6t8uxvgqbtak" path="res://Art/Characters/Player/arm.png" id="5_chdkt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kupj3"]
-height = 43.0
+height = 39.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Legs", "Arm") groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Arm", "colliderShape") groups=["player"]]
 position = Vector2(192, 340)
 scale = Vector2(2, 2)
 collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_bloh1")
-Legs = [NodePath("LegL"), NodePath("LegR")]
 Arm = NodePath("Arm")
+colliderShape = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
-position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_kupj3")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_y4omi")
 
-[node name="LegL" parent="." instance=ExtResource("3_ocw1e")]
-
-[node name="LegR" parent="." instance=ExtResource("4_mfv0a")]
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(12, -35.5)
-limit_left = -256
 position_smoothing_enabled = true
 
 [node name="Arm" type="Sprite2D" parent="."]

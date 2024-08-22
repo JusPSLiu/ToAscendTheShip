@@ -3,37 +3,42 @@ extends CharacterBody2D
 
 
 
-const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 const LERP_DECAY_RATE = 8
+const COYOTE_MAX = 0.14
 
 @export var Legs : Array[AnimatedSprite2D]
 @export var Arm : Sprite2D
+@export var colliderShape : CollisionShape2D
 
-
+var coyoteTime = 0.14
+var SPEED = 300.0
 var ArmAttachmentAnimator : AnimationPlayer
 var facingDirection = false
 var moving = false
+var jumpable = false
 var touchingUpgradeArea : Node2D = null
 var movingToUpgrader : bool = false
 
 var armUpgradeTree : Array[String] = ["none", "hammer", "jackhammer"]
 var legUpgradeTree : Array[String] = ["none", "trackL", "wheel"]
+var legHeight : Array[int] = [39, 42, 50]
+var legSpeed : Array[int] = [0, 300, 500]
 
 func _ready() -> void:
 	resetUpgrade()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	if not is_on_floor():
+	if is_on_floor():
+		coyoteTime = COYOTE_MAX
+	else:
 		velocity += get_gravity() * delta
+		if (coyoteTime > 0):
+			coyoteTime -= delta
 	
 		# turn arm to camera
 	Arm.look_at(get_global_mouse_position());
-
-	# Handle jump
-	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-	#	velocity.y = JUMP_VELOCITY
 
 	# Handle go down.
 	if (Input.is_action_pressed("ui_down")):
@@ -43,11 +48,14 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if movingToUpgrader:
-		velocity.x = 0
-		position.x = stolenExpDecayFromYT(position.x, touchingUpgradeArea.position.x, 8, delta)
-		if (position.x > touchingUpgradeArea.position.x-1 && position.x < touchingUpgradeArea.position.x+1):
-			position.x = touchingUpgradeArea.position.x
-	elif (Legs.size() > 0):
+		if touchingUpgradeArea == null:
+			movingToUpgrader = false
+		else:
+			velocity.x = 0
+			position.x = stolenExpDecayFromYT(position.x, touchingUpgradeArea.position.x, 8, delta)
+			if (position.x > touchingUpgradeArea.position.x-1 && position.x < touchingUpgradeArea.position.x+1):
+				position.x = touchingUpgradeArea.position.x
+	else:
 		var direction := Input.get_axis("ui_left", "ui_right")
 		if direction:
 			velocity.x = stolenExpDecayFromYT(velocity.x, direction * SPEED, LERP_DECAY_RATE, delta)
@@ -90,9 +98,15 @@ func _input(event: InputEvent) -> void:
 					ArmAttachmentAnimator.play("active")
 	if event is InputEventKey:
 		if (event.is_action_pressed("ui_up")):
+			# enter the upgrade menu
 			if (touchingUpgradeArea != null):
 				touchingUpgradeArea.turn_on()
 				movingToUpgrader = true
+			elif GlobalVariables.activeLeg == 2 and coyoteTime > 0:
+				velocity.y = JUMP_VELOCITY
+		elif GlobalVariables.activeLeg == 2 and event.is_action_pressed("ui_accept") and coyoteTime > 0:
+			#handle jump
+			velocity.y = JUMP_VELOCITY
 
 
 func entered_upgrade_area(object):
@@ -132,6 +146,8 @@ func resetUpgrade():
 			while (Legs.size() > 0):
 				remove_child(Legs[0])
 				Legs.pop_front()
+			set_collider_size(legHeight[0])
+	SPEED = legSpeed[GlobalVariables.activeLeg]
 
 func addNewArm():
 	var newArm = load("res://Scenes/Upgrades/"+armUpgradeTree[GlobalVariables.activeArm]+".tscn")
@@ -149,3 +165,11 @@ func addNewLeg():
 		add_child(leggy)
 		Legs.append(leggy)
 		facingDirection = false
+	set_collider_size(legHeight[GlobalVariables.activeLeg])
+
+
+
+func set_collider_size(sz):
+	colliderShape.shape.height = sz
+	colliderShape.position.y = sz-legHeight[0]
+	position.y -= 4

@@ -59,7 +59,7 @@ func openUp():
 		if (i > GlobalVariables.unlockedArm):
 			armButtons[i].hide()
 	for i in range(legButtons.size()):
-		if (i > GlobalVariables.unlockedArm):
+		if (i > GlobalVariables.unlockedLeg):
 			legButtons[i].hide()
 	show()
 

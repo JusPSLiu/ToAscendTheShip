@@ -36,6 +36,10 @@ func turn_on():
 	await animationplayer.animation_finished
 	if (newCover.visible):
 		newCover.hide()
-		GlobalVariables.unlockedArm = upgradeLevel
+		match(upgradeType):
+			0:
+				GlobalVariables.unlockedLeg = upgradeLevel
+			1:
+				GlobalVariables.unlockedArm = upgradeLevel
 	upgradeMenu.openUp()
 	animationplayer.play("opendoor")

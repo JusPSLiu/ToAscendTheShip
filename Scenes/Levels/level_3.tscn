@@ -1,0 +1,419 @@
+[gd_scene load_steps=18 format=3 uid="uid://dkvf4jnpsoyj8"]
+
+[ext_resource type="Script" path="res://Scripts/Levels/LevelScript.gd" id="1_jlftd"]
+[ext_resource type="Texture2D" uid="uid://dsdoiaskg1jmn" path="res://Art/Backgrounds/Opening/skytesselated.png" id="2_hwiou"]
+[ext_resource type="Texture2D" uid="uid://cwcvwmby8kthr" path="res://Art/Backgrounds/Opening/nearocean.png" id="3_857ev"]
+[ext_resource type="Texture2D" uid="uid://bja3khsdn0ro" path="res://Art/Backgrounds/Opening/nearboat.png" id="4_55er2"]
+[ext_resource type="Texture2D" uid="uid://bmon73y5rdusc" path="res://Art/decoration/helm.png" id="5_p6xup"]
+[ext_resource type="Texture2D" uid="uid://cd1cfhs0hs2p5" path="res://Art/Characters/Player/body.png" id="6_njhiw"]
+[ext_resource type="TileSet" uid="uid://b3iikbnwdxp5" path="res://Tilesets/ship.tres" id="6_sgfkl"]
+[ext_resource type="Texture2D" uid="uid://bpi42f4j3rjwk" path="res://Art/Characters/Player/wheel.png" id="7_fk5wr"]
+[ext_resource type="Texture2D" uid="uid://6t8uxvgqbtak" path="res://Art/Characters/Player/arm.png" id="8_rwek3"]
+[ext_resource type="Texture2D" uid="uid://bmhfdc0m487oy" path="res://Art/Characters/Player/hammer.png" id="9_o203m"]
+
+[sub_resource type="Animation" id="Animation_657w1"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("closeup/nearboat:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("closeup/nearocean:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-275.5, -7.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("closeup/nearboat:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("closeup/nearboat:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("closeup:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("firstpart/bgfren:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("firstpart/bgfren:z_index")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("firstpart/bgfren:position:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("firstpart/bgfren/Arm/Arm2:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("firstpart:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ok1w0"]
+resource_name = "cutscene"
+length = 15.0
+step = 0.1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("closeup/nearboat:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.0132296, -0.25, 0, 0.5, 0, -0.02, -1, 0, 3, 0, 0.01, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(6, 7.8, 12.7667)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("closeup/nearocean:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(6, 7.8, 8.9, 10, 13, 15),
+"transitions": PackedFloat32Array(1, 0.5, 1, 2, 1, 1),
+"update": 0,
+"values": [Vector2(-275.5, -7.5), Vector2(-319.658, -7.5), Vector2(-328.857, -7.5), Vector2(-328.857, -7.5), Vector2(-293.013, -7.5), Vector2(-250, -7.5)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"get_to_next_level"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("closeup/nearboat:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(8.8, 9.5, 10),
+"transitions": PackedFloat32Array(2, 0.5, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("closeup/nearboat:flip_h")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(6.8, 9.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("closeup:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.3, 6, 6.0001, 6.0002),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, true]
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("firstpart/bgfren:position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(46.5, -0.25, 0, 2, 0, 380, -1, 0, 0.25, 0),
+"times": PackedFloat32Array(1.6, 6)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("firstpart/bgfren:position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(400, -0.25, 0, 0.25, 2, 100, -0.5, 0, 0.5, 0, 172, 0, 1, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8, 1.6)
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("firstpart/bgfren:z_index")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("firstpart/bgfren/Arm/Arm2:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(5.6, 6),
+"transitions": PackedFloat32Array(4, 1),
+"update": 0,
+"values": [0.0, 0.427606]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("firstpart:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.1, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1pgk4"]
+_data = {
+"RESET": SubResource("Animation_657w1"),
+"cutscene": SubResource("Animation_ok1w0")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2hqb"]
+atlas = ExtResource("7_fk5wr")
+region = Rect2(16, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33uy0"]
+atlas = ExtResource("7_fk5wr")
+region = Rect2(32, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fdop"]
+atlas = ExtResource("7_fk5wr")
+region = Rect2(0, 0, 16, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1g6vx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2hqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33uy0")
+}],
+"loop": true,
+"name": &"move",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fdop")
+}],
+"loop": false,
+"name": &"stand",
+"speed": 5.0
+}]
+
+[node name="finalCutscene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+script = ExtResource("1_jlftd")
+levelNum = 3
+
+[node name="sky" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+texture = ExtResource("2_hwiou")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1pgk4")
+}
+autoplay = "cutscene"
+
+[node name="closeup" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 240.0
+offset_top = 218.0
+offset_right = 280.0
+offset_bottom = 258.0
+
+[node name="nearocean" type="TextureRect" parent="closeup"]
+layout_mode = 0
+offset_left = -275.5
+offset_top = -7.5
+offset_right = 444.5
+offset_bottom = 63.5
+texture = ExtResource("3_857ev")
+
+[node name="nearboat" type="TextureRect" parent="closeup"]
+layout_mode = 0
+offset_left = -53.0
+offset_top = -222.0
+offset_right = 38.0
+offset_bottom = 5.0
+pivot_offset = Vector2(46.79, 217.89)
+texture = ExtResource("4_55er2")
+stretch_mode = 2
+
+[node name="firstpart" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="dark" type="TileMap" parent="firstpart"]
+modulate = Color(0.481789, 0.481789, 0.481789, 1)
+tile_set = ExtResource("6_sgfkl")
+format = 2
+layer_0/tile_data = PackedInt32Array(655388, 65537, 3, 655389, 1, 3, 720894, 131073, 3, 786430, 65537, 3, 851966, 1, 3, 720895, 65537, 3, 786431, 65537, 3, 851967, 131073, 3, 655360, 131073, 3, 720896, 1, 3, 786432, 65537, 3, 655361, 65537, 3, 720897, 65537, 3, 786433, 131073, 3, 655362, 131073, 3, 720898, 131073, 3, 786434, 65537, 3, 655363, 1, 3, 720899, 65537, 3, 786435, 1, 3, 655364, 65537, 3, 720900, 1, 3, 786436, 131073, 3, 655365, 1, 3, 720901, 131073, 3, 786437, 131073, 3, 655366, 131073, 3, 720902, 1, 3, 786438, 131073, 3, 655367, 65537, 3, 720903, 1, 3, 786439, 65537, 3, 655368, 1, 3, 720904, 131073, 3, 786440, 131073, 3, 655369, 65537, 3, 720905, 131073, 3, 786441, 131073, 3, 655370, 131073, 3, 720906, 65537, 3, 786442, 131073, 3, 655371, 1, 3, 720907, 131073, 3, 786443, 131073, 3, 655372, 65537, 3, 720908, 1, 3, 786444, 131073, 3, 655373, 65537, 3, 720909, 1, 3, 786445, 131073, 3, 655374, 1, 3, 720910, 65537, 3, 786446, 65537, 3, 655375, 65537, 3, 720911, 1, 3, 786447, 1, 3, 655376, 65537, 3, 720912, 65537, 3, 786448, 1, 3, 655377, 1, 3, 720913, 131073, 3, 786449, 65537, 3, 655378, 1, 3, 720914, 1, 3, 786450, 1, 3, 655379, 65537, 3, 720915, 1, 3, 786451, 131073, 3, 655380, 65537, 3, 720916, 65537, 3, 786452, 65537, 3, 655381, 1, 3, 720917, 65537, 3, 786453, 65537, 3, 655382, 131073, 3, 720918, 65537, 3, 786454, 65537, 3, 655383, 1, 3, 720919, 1, 3, 786455, 131073, 3, 655384, 1, 3, 720920, 1, 3, 786456, 65537, 3, 655385, 131073, 3, 720921, 1, 3, 786457, 1, 3, 655386, 131073, 3, 720922, 131073, 3, 786458, 131073, 3, 655387, 1, 3, 720923, 1, 3, 786459, 1, 3, 720924, 131073, 3, 786460, 1, 3, 720925, 131073, 3, 786461, 131073, 3, 655390, 1, 3, 720926, 1, 3, 786462, 65537, 3, 655391, 65537, 3, 720927, 65537, 3, 786463, 131073, 3, 589850, 65537, 3, 589851, 131073, 3, 589852, 65537, 3, 589853, 65537, 3, 589854, 131073, 3, 589855, 131073, 3, 589848, 1, 1, 589849, 65537, 1, 327699, 1, 3, 393235, 1, 3, 458771, 65537, 3, 524307, 131073, 3, 589843, 1, 3, 327687, 131073, 3, 327688, 131073, 3, 393223, 65537, 3, 458759, 65537, 3, 524295, 1, 3, 589831, 65537, 3, 393224, 131073, 3, 458760, 131073, 3, 524296, 65537, 3, 589832, 65537, 3, 262172, 131073, 3, 327708, 65537, 3, 393244, 131073, 3, 458780, 1, 3, 524316, 65537, 3, -1, 65537, 3, 65535, 65537, 3, -65536, 1, 3, 0, 65537, 3, -65535, 65537, 3, 1, 1, 3, -65534, 65537, 3, 2, 65537, 3, -65533, 1, 3, 3, 1, 3, -65532, 1, 3, 4, 131073, 3, -65531, 131073, 3, 5, 1, 3, -65530, 65537, 3, 6, 131073, 3, -65529, 131073, 3, 7, 1, 3, -65528, 1, 3, 8, 65537, 3, -65527, 1, 3, 9, 1, 3, -65526, 1, 3, 10, 65537, 3, -65525, 65537, 3, 11, 65537, 3, -65524, 131073, 3, 12, 1, 3, -65523, 65537, 3, 13, 1, 3, -65522, 131073, 3, 14, 131073, 3, -65521, 131073, 3, 15, 65537, 3, -65520, 131073, 3, 16, 1, 3, -65519, 65537, 3, 17, 1, 3, -65518, 1, 3, 18, 1, 3, -65517, 65537, 3, 19, 65537, 3, -65516, 1, 3, 20, 131073, 3, -65515, 65537, 3, 21, 131073, 3, -65514, 131073, 3, 22, 65537, 3, -65513, 1, 3, 23, 131073, 3, -65512, 131073, 3, 24, 65537, 3, -65511, 131073, 3, 25, 131073, 3, -65510, 65537, 3, 26, 65537, 3, -65509, 65537, 3, 27, 65537, 3, -65508, 65537, 3, 28, 1, 3, -65507, 65537, 3, 29, 131073, 3, -65506, 65537, 3, 30, 131073, 3, 65543, 65537, 3, 131079, 1, 3, 196615, 1, 3, 262151, 1, 3, 65544, 1, 3, 131080, 1, 3, 196616, 65537, 3, 262152, 1, 3, 65555, 65537, 3, 131091, 65537, 3, 196627, 65537, 3, 262163, 65537, 3, 65564, 1, 3, 131100, 131073, 3, 196636, 65537, 3, 196617, 65537, 3, 196618, 1, 3, 196619, 65537, 3, 196620, 131073, 3, 196621, 1, 3, 196622, 65537, 3, 196623, 131073, 3, 196624, 1, 3, 196625, 1, 3, 196626, 131073, 3)
+
+[node name="bgfren" type="Sprite2D" parent="firstpart"]
+z_index = 2
+texture = ExtResource("6_njhiw")
+
+[node name="LegL" type="AnimatedSprite2D" parent="firstpart/bgfren"]
+position = Vector2(0, 26)
+sprite_frames = SubResource("SpriteFrames_1g6vx")
+animation = &"move"
+
+[node name="Arm" type="Sprite2D" parent="firstpart/bgfren"]
+position = Vector2(0, 3)
+rotation = 0.634635
+texture = ExtResource("8_rwek3")
+offset = Vector2(9, 0)
+
+[node name="Arm2" type="Sprite2D" parent="firstpart/bgfren/Arm"]
+position = Vector2(17.531, 0.131855)
+texture = ExtResource("9_o203m")
+offset = Vector2(-0.5, -8)
+
+[node name="Helm" type="Sprite2D" parent="firstpart"]
+position = Vector2(412.5, 184.5)
+texture = ExtResource("5_p6xup")
+
+[node name="ColorRect2" type="ColorRect" parent="firstpart"]
+offset_left = -36.0
+offset_top = 50.5
+offset_right = 97.0
+offset_bottom = 574.5
+color = Color(0.539663, 0.539663, 0.539663, 1)
+
+[node name="ColorRect" type="ColorRect" parent="firstpart/ColorRect2"]
+offset_left = 17.0
+offset_top = 1.5
+offset_right = 131.0
+offset_bottom = 433.5
+color = Color(0.344076, 0.344076, 0.344076, 1)
+
+[node name="ColorRect" type="ColorRect" parent="firstpart/ColorRect2/ColorRect"]
+offset_left = 13.0
+offset_top = 28.0
+offset_right = 92.0
+offset_bottom = 154.0
+color = Color(0, 0, 0, 1)
+
+[node name="TileMap" type="TileMap" parent="firstpart"]
+z_index = 1
+tile_set = ExtResource("6_sgfkl")
+format = 2
+layer_0/tile_data = PackedInt32Array(917503, 1, 2, 851968, 1, 2, 851969, 65537, 2, 851970, 131073, 2, 851971, 131073, 2, 851972, 65537, 2, 851973, 65537, 2, 851974, 131073, 2, 851975, 65537, 2, 851976, 65537, 2, 851977, 131073, 2, 851978, 1, 2, 851979, 131073, 2, 851980, 65537, 2, 851981, 1, 2, 851982, 1, 2, 851983, 1, 2, 851984, 1, 2, 851985, 131073, 2, 851986, 131073, 2, 851987, 65537, 2, 851988, 1, 2, 851989, 131073, 2, 851990, 65537, 2, 851991, 1, 2, 851992, 1, 2, 851993, 65537, 2, 851994, 131073, 2, 851995, 131073, 2, 851996, 131073, 2, 851997, 65537, 2, 983038, 131073, 3, 1048574, 131073, 3, 1114110, 1, 3, 983039, 1, 3, 1048575, 131073, 3, 1114111, 131073, 3, 917504, 131073, 3, 983040, 131073, 3, 1048576, 65537, 3, 917505, 1, 3, 983041, 131073, 3, 1048577, 65537, 3, 917506, 131073, 3, 983042, 131073, 3, 1048578, 131073, 3, 917507, 1, 3, 983043, 1, 3, 1048579, 131073, 3, 917508, 65537, 3, 983044, 131073, 3, 1048580, 1, 3, 917509, 131073, 3, 983045, 1, 3, 1048581, 131073, 3, 917510, 1, 3, 983046, 1, 3, 1048582, 131073, 3, 917511, 65537, 3, 983047, 65537, 3, 1048583, 1, 3, 917512, 65537, 3, 983048, 65537, 3, 1048584, 65537, 3, 917513, 65537, 3, 983049, 65537, 3, 1048585, 65537, 3, 917514, 131073, 3, 983050, 1, 3, 1048586, 65537, 3, 917515, 65537, 3, 983051, 131073, 3, 1048587, 131073, 3, 917516, 1, 3, 983052, 65537, 3, 1048588, 1, 3, 917517, 1, 3, 983053, 131073, 3, 1048589, 1, 3, 917518, 131073, 3, 983054, 131073, 3, 1048590, 65537, 3, 917519, 131073, 3, 983055, 1, 3, 1048591, 131073, 3, 917520, 65537, 3, 983056, 65537, 3, 1048592, 131073, 3, 917521, 131073, 3, 983057, 1, 3, 1048593, 1, 3, 917522, 131073, 3, 983058, 65537, 3, 1048594, 65537, 3, 917523, 65537, 3, 983059, 131073, 3, 1048595, 1, 3, 917524, 1, 3, 983060, 1, 3, 1048596, 65537, 3, 917525, 131073, 3, 983061, 131073, 3, 1048597, 1, 3, 917526, 131073, 3, 983062, 65537, 3, 1048598, 1, 3, 917527, 131073, 3, 983063, 65537, 3, 1048599, 131073, 3, 917528, 65537, 3, 983064, 65537, 3, 1048600, 1, 3, 917529, 131073, 3, 983065, 1, 3, 1048601, 1, 3, 917530, 131073, 3, 983066, 131073, 3, 1048602, 1, 3, 917531, 1, 3, 983067, 1, 3, 1048603, 1, 3, 917532, 1, 3, 983068, 1, 3, 1048604, 65537, 3, 917533, 1, 3, 983069, 65537, 3, 1048605, 131073, 3, 917502, 65537, 2, 655388, 131075, 1, 655389, 196611, 1, 720923, 65539, 1, 786459, 3, 3, 720924, 3, 3, 786460, 3, 3, 720925, 3, 3, 786461, 3, 3)
